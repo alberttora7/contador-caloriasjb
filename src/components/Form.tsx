@@ -9,7 +9,7 @@ export default function Form() {
         {
             category:1,
             name:'',
-            calories:0
+            calories: 5
         }
     )
 
@@ -21,6 +21,11 @@ export default function Form() {
         })
     }
 
+    const isValidActivity = () => {
+        const {name, calories} = activity
+        console.log(name.trim() !== '')
+        return name.trim() !== '' && calories > 0
+    }
   return (
     <form action="" 
     className="space-y-5 bg-white shadow p-10 rounded-lg"
@@ -65,17 +70,18 @@ export default function Form() {
                 id="caliries" 
                 className="border border-slate-300 p-2 rounded-lg"
                 placeholder="Calorias. ej. 300 o 500"
-                value={activity.calories}
-                 onChange={handlechange}
+                
+                onChange={handlechange}
             />
 
         </div>
 
-        <input 
-            type="submit"
-            className="bg-gray-800 hover:bg-green-950 w-full p-2 font-bold uppercase text-white cursor-pointer"
-            value="Guardar caloria o actividad" 
-         />
+            <input 
+                type="submit"
+                className="bg-gray-800 hover:bg-green-950 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
+                value={activity.category === 1 ? 'Guardar Comida' : 'Guardar Ejercicio'} 
+                disabled={!isValidActivity()}
+            />
     </form>
   )
 }
