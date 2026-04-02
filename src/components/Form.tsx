@@ -1,4 +1,6 @@
+
 import type { ChangeEvent,Dispatch,SubmitEvent } from "react"
+import {v4 as uuidv4} from 'uuid'
 import { useState } from "react"
 import  { categories } from "../data/categories"
 import type { Activity } from "../types"
@@ -10,15 +12,14 @@ type FormPorps = {
 
 export default function Form({dispatch} : FormPorps) {
     
+    const initialState : Activity = {
+        id: uuidv4(),
+        category:1,
+        name:'',
+        calories: 1
+    }
 
-
-    const [activity, setActivity] = useState<Activity>(
-        {
-            category:1,
-            name:'',
-            calories: 5
-        }
-    )
+    const [activity, setActivity] = useState<Activity>(initialState)
 
     const handlechange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
         const isNumberField = ['category','calories'].includes(e.target.id)
@@ -38,7 +39,11 @@ export default function Form({dispatch} : FormPorps) {
         e.preventDefault()
 
         dispatch({type: "save-activity", payload: {newActivity: activity}})
-        console.log('enviado..')
+
+       setActivity(
+            {  ...initialState,
+                id: uuidv4()
+            })
     }
 
   return (
@@ -101,3 +106,12 @@ export default function Form({dispatch} : FormPorps) {
     </form>
   )
 }
+    // function uuidv4(): string {
+    //     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    //         const r = Math.random() * 16 | 0;
+    //         const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    //         return v.toString(16);
+    //     });
+    // }
+
+
