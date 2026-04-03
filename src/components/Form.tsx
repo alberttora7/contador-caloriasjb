@@ -16,7 +16,7 @@ export default function Form({dispatch} : FormPorps) {
         id: uuidv4(),
         category:1,
         name:'',
-        calories: 1
+        calories: 0
     }
 
     const [activity, setActivity] = useState<Activity>(initialState)
@@ -25,7 +25,7 @@ export default function Form({dispatch} : FormPorps) {
         const isNumberField = ['category','calories'].includes(e.target.id)
         setActivity({
             ...activity,
-            [e.target.id] : isNumberField ? +e.target.value : e.target.value
+            [e.target.id] : isNumberField ? e.target.value : e.target.value
         })
     }
 
@@ -84,14 +84,13 @@ export default function Form({dispatch} : FormPorps) {
 
         </div>
          <div className="grid grid-cols-1 gap-3">
-            <label htmlFor="caliries">Calorigas:</label>
+            <label htmlFor="calories">Calorias:</label>
             <input 
+                id="calories"
                 type="number" 
-                name="" 
-                id="caliries" 
                 className="border border-slate-300 p-2 rounded-lg"
                 placeholder="Calorias. ej. 300 o 500"
-                
+                value={activity.calories}
                 onChange={handlechange}
             />
 
