@@ -13,7 +13,7 @@ function App() {
     <>
         <header className="bg-lime-600 py-3">
           <div className="max-w-4xl mx-auto flex justify-between">
-            <h1 className="text-center text-lg font-bold text-white uppercase">Contaodor de Calorias</h1>
+            <h1 className="text-center text-lg font-bold text-white uppercase">Contador de Calorias</h1>
           </div>
         </header>
         
@@ -28,6 +28,7 @@ function App() {
       <section className=" p-10 mx-auto max-w-4xl">
         <ActivityList
           activities={state.activities}
+          dispatch={dispatch}
         />
       </section>
     </>
