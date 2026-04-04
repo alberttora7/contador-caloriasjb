@@ -39,7 +39,7 @@ export default function Form({dispatch, state} : FormPorps) {
 
     const isValidActivity = () => {
         const {name, calories} = activity
-        console.log(name.trim() !== '')
+        // console.log(name.trim() !== '')
         return name.trim() !== '' && calories > 0
     }
 
